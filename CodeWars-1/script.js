@@ -228,3 +228,186 @@ var str = "How can mirrors be real if our eyes aren't real";
 console.log(str.toJadenCase());
 console.log("How Can Mirrors Be Real If Our Eyes Aren't Real");
 */
+
+/*
+const sum = (arr, from, to) =>
+  arr.slice(from, to).reduce((acc, num) => num + acc, 0);
+
+// function findEvenIndex(arr) {
+// for (let i = 0; i < arr.length; i++) {
+//   const leftSide = sum(arr, 0, i);
+//   const rightSide = sum(arr, i + 1);
+//   if (leftSide === rightSide) {
+//     return i;
+//   }
+// }
+// return -1;
+// }
+
+const findEvenIndex = arr =>
+  arr.findIndex((_, i) => sum(arr, 0, i) === sum(arr, i + 1));
+
+console.log(
+  findEvenIndex([1, 2, 3, 4, 3, 2, 1]),
+  3,
+  'The array was: [1,2,3,4,3,2,1] \n'
+);
+console.log(
+  findEvenIndex([1, 100, 50, -51, 1, 1]),
+  1,
+  'The array was: [1,100,50,-51,1,1] \n'
+);
+console.log(
+  findEvenIndex([1, 2, 3, 4, 5, 6]),
+  -1,
+  'The array was: [1,2,3,4,5,6] \n'
+);
+console.log(
+  findEvenIndex([0, 0, 0, 0, 0]),
+  0,
+  'The array was: [20,10,30,10,10,15,35] \n'
+);
+console.log(
+  findEvenIndex([20, 10, -80, 10, 10, 15, 35]),
+  0,
+  'The array was: [20,10,-80,10,10,15,35] \n'
+);
+*/
+
+/*
+const punctuationMark = ['!', '.'];
+
+const pigIt = str =>
+  str
+    .split(' ')
+    .map(word =>
+      punctuationMark.includes(word) ? word : word.slice(1) + word[0] + 'ay'
+    )
+    .join(' ');
+
+console.log(pigIt('Pig latin is cool'), '\nigPay atinlay siay oolcay');
+console.log(pigIt('This is my string'), '\nhisTay siay ymay tringsay');
+console.log(pigIt('This is my string !'), '\nhisTay siay ymay tringsay !');
+*/
+/*
+function solution(text, markers) {
+  return text
+    .split('\n')
+    .flatMap(line => {
+      line = line.split('');
+
+      const index = line.findIndex(char => markers.includes(char));
+
+      if (index > -1) line.splice(index).join('');
+
+      return line.join('').trimEnd();
+    })
+    .join('\n');
+}
+
+const tests = [
+  // ['aa bb cc', [], 'aa bb cc'],
+  ['aa bb cc  ', [], 'aa bb cc'],
+  // ['  aa bb cc', [], '  aa bb cc'],
+  // ['  aa # bb # cc  ', [], '  aa # bb # cc'],
+
+  // ['aa bb cc', ['#'], 'aa bb cc'],
+  // ['aa bb # cc', ['#'], 'aa bb'],
+  // ['aa# bb cc', ['#'], 'aa'],
+  // ['aa #bb cc', ['#'], 'aa'],
+  // ['aa # bb # cc', ['#'], 'aa'],
+  // ['#aa bb cc', ['#'], ''],
+
+  // ['#aa bb\ncc dd', ['#'], '\ncc dd'],
+  // ['aa # bb\ncc dd', ['#'], 'aa\ncc dd'],
+  // ['aa bb\n#cc dd', ['#'], 'aa bb\n'],
+  // ['aa bb\ncc # dd', ['#'], 'aa bb\ncc'],
+  // ['aa bb\ncc dd#', ['#'], 'aa bb\ncc dd'],
+
+  // ['aa bb\ncc dd', ['#', '!'], 'aa bb\ncc dd'],
+  // ['aa # bb\ncc dd', ['#', '!'], 'aa\ncc dd'],
+  // ['aa bb\ncc ! dd', ['#', '!'], 'aa bb\ncc'],
+  // ['#aa bb\n!cc dd', ['#', '!'], '\n'],
+  // ['aa ! bb\ncc # dd', ['#', '!'], 'aa\ncc'],
+  // ['aa bb#\ncc dd!', ['#', '!'], 'aa bb\ncc dd'],
+
+  // ['aa + bb\ncc - dd\nee * ff', ['+', '-', '*'], 'aa\ncc\nee'],
+  // ['aa / bb\ncc ^ dd\nee $ ff', ['/', '^', '$'], 'aa\ncc\nee'],
+];
+
+tests.forEach(([text, markers, expected]) =>
+  console.log(solution(text, markers), expected)
+);
+*/
+
+/*
+// Note: You are given a function isArray(o) that returns
+// whether its argument is an array.
+const isArray = arr => arr instanceof Array;
+
+Array.prototype.sameStructureAs = function (other) {
+  let hasSameStructure = true;
+  console.log('call');
+  if (this.length !== other.length) return false;
+
+  if (isArray(this) && isArray(other)) {
+    const result = this.find((el, i) => {
+      if (isArray(this[i]) && isArray(other[i])) {
+        return !this[i].sameStructureAs(other[i]);
+      }
+
+      if (
+        (isArray(this[i]) && !isArray(other[i])) ||
+        (!isArray(this[i]) && isArray(other[i]))
+      )
+        return true;
+
+      return false;
+    });
+
+    if (result !== undefined) hasSameStructure = false;
+  } else {
+    hasSameStructure = false;
+  }
+  return hasSameStructure;
+};
+
+// console.log([1, 1, 1].sameStructureAs([2, 2, 2]), '[1,1,1] same as [2,2,2]');
+
+// console.log(
+//   [1, [1, 1]].sameStructureAs([2, [2, 2]]),
+//   '[1,[1,1]] same as [2,[2,2]]'
+// );
+// console.log(
+//   [1, [1, 1]].sameStructureAs([[2, 2], 2]),
+//   '[1,[1,1]] not same as [[2,2],2]'
+// );
+// console.log(
+//   [1, [1, 1]].sameStructureAs([2, [2]]),
+//   '[1,[1,1]] not same as [2,[2]]'
+// );
+
+// console.log(
+//   [[[], []]].sameStructureAs([[[], []]]),
+//   '[[[],[]]] same as [[[],[]]]'
+// );
+// console.log(
+//   [[[], []]].sameStructureAs([[1, 1]]),
+//   '[[[],[]]] not same as [[1,1]]'
+// );
+
+// console.log(
+//   [1, [[[1]]]].sameStructureAs([2, [[[2]]]]),
+//   '[1,[[[1]]]] same as [2,[[[2]]]]'
+// );
+
+// console.log([].sameStructureAs(1), '[] not same as 1');
+// console.log([].sameStructureAs({}), '[] not same as {}');
+
+// console.log(
+//   [1, '[', ']'].sameStructureAs(['[', ']', 1]),
+//   "[1,'[',']'] same as ['[',']',1]"
+// );
+
+// console.log([1, 2].sameStructureAs([[3], 3]), '[1,2] not same as [[3],3]');
+*/
