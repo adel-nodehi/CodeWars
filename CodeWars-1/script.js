@@ -289,6 +289,7 @@ console.log(pigIt('Pig latin is cool'), '\nigPay atinlay siay oolcay');
 console.log(pigIt('This is my string'), '\nhisTay siay ymay tringsay');
 console.log(pigIt('This is my string !'), '\nhisTay siay ymay tringsay !');
 */
+
 /*
 function solution(text, markers) {
   return text
@@ -412,33 +413,100 @@ Array.prototype.sameStructureAs = function (other) {
 // console.log([1, 2].sameStructureAs([[3], 3]), '[1,2] not same as [[3],3]');
 */
 
-function getWordScore(word) {
-  return [...word.toLowerCase()].reduce(
-    (acc, letter) => acc + (letter.charCodeAt(0) - 96),
-    0
-  );
+// Fill None
+// url [https://www.codewars.com/kata/5edaa69f5fcd510020199489/train/javascript]
+
+function fill(arr, method = 0) {
+  if (arr.length <= 1 && !arr[0]) return arr;
+
+  let result = [];
+  let savedValue = undefined;
+
+  if (method === -1) {
+    return arr
+      .toReversed()
+      .map(item => {
+        if (item === undefined) {
+          return savedValue;
+        }
+
+        savedValue = item;
+        return item;
+      })
+      .toReversed();
+  }
+
+  if (method === 1) {
+    return arr.map(item => {
+      if (item === undefined) {
+        return savedValue;
+      }
+
+      savedValue = item;
+      return item;
+    });
+  }
+
+  if (method === 0) {
+    return arr.map((item, i) => {
+      if (item !== undefined) return item;
+
+      let step = 1;
+      while (true) {
+        if (arr[i - step] !== undefined && arr[i + step] !== undefined) {
+          return Math.min(arr[i - step], arr[i + step]);
+        }
+
+        if (arr[i - step] !== undefined) return arr[i - step];
+
+        if (arr[i + step] !== undefined) return arr[i + step];
+
+        step++;
+      }
+    });
+  }
+
+  return result;
 }
 
-function high(x) {
-  let highScore = 0;
+// console.log(fill([], -1), []);
+// console.log(fill([], 0), []);
+// console.log(fill([], 1), []);
 
-  return x.split(' ').reduce((acc, word) => {
-    const wordScore = getWordScore(word);
+// console.log(fill([undefined], -1), [undefined]);
+// console.log(fill([undefined], 0), [undefined]);
+// console.log(fill([undefined], 1), [undefined]);
 
-    if (highScore < wordScore) {
-      highScore = wordScore;
-      return word;
-    }
+// console.log(fill([1], -1), [1]);
+// console.log(fill([1], 0), [1]);
+console.log(fill([1], 1), [1]);
 
-    return acc;
-  }, '');
-}
+// console.log(fill([1, undefined], -1), [1, undefined]);
+// console.log(fill([1, undefined], 0), [1, 1]);
+console.log(fill([1, undefined], 1), [1, 1]);
 
-console.log(high('man i need a taxi up to ubud'), 'taxi');
-console.log(high('what time are we climbing up the volcano'), 'volcano');
-console.log(high('take me to semynak'), 'semynak');
-console.log(high('aa b'), 'aa');
-console.log(high('b aa'), 'b');
-console.log(high('bb d'), 'bb');
-console.log(high('d bb'), 'd');
-console.log(high('aaa b'), 'aaa');
+// console.log(
+//   fill([undefined, 1, undefined, undefined, undefined, 2, undefined], -1),
+//   [1, 1, 2, 2, 2, 2, undefined]
+// );
+// console.log(
+//   fill([undefined, 1, undefined, undefined, undefined, 2, undefined], 0),
+//   [1, 1, 1, 1, 2, 2, 2]
+// );
+console.log(
+  fill([undefined, 1, undefined, undefined, undefined, 2, undefined], 1),
+  [undefined, 1, 1, 1, 1, 2, 2]
+);
+
+console.log(
+  fill([4, 5, undefined, undefined, undefined, 2, undefined, 2], -1),
+  [4, 5, 2, 2, 2, 2, 2, 2]
+);
+// console.log(
+//   fill([4, 5, undefined, undefined, undefined, 2, undefined, 2], 0),
+//   [4, 5, 5, 2, 2, 2, 2, 2]
+// );
+console.log(
+  fill([4, 5, undefined, undefined, undefined, 2, undefined, 2], 1),
+  [4, 5, 5, 5, 5, 2, 2, 2]
+);
