@@ -413,104 +413,107 @@ Array.prototype.sameStructureAs = function (other) {
 // console.log([1, 2].sameStructureAs([[3], 3]), '[1,2] not same as [[3],3]');
 */
 
+/*
 // Fill None
 // url [https://www.codewars.com/kata/5edaa69f5fcd510020199489/train/javascript]
 
-// function fill(arr, method = 0) {
-//   if (arr.length <= 1 && !arr[0]) return arr;
+function fill(arr, method = 0) {
+  if (arr.length <= 1 && !arr[0]) return arr;
 
-//   let result = [];
-//   let savedValue = undefined;
+  let result = [];
+  let savedValue = undefined;
 
-//   if (method === -1) {
-//     return arr
-//       .toReversed()
-//       .map(item => {
-//         if (item === undefined) {
-//           return savedValue;
-//         }
+  if (method === -1) {
+    return arr
+      .toReversed()
+      .map(item => {
+        if (item === undefined) {
+          return savedValue;
+        }
 
-//         savedValue = item;
-//         return item;
-//       })
-//       .toReversed();
-//   }
+        savedValue = item;
+        return item;
+      })
+      .toReversed();
+  }
 
-//   if (method === 1) {
-//     return arr.map(item => {
-//       if (item === undefined) {
-//         return savedValue;
-//       }
+  if (method === 1) {
+    return arr.map(item => {
+      if (item === undefined) {
+        return savedValue;
+      }
 
-//       savedValue = item;
-//       return item;
-//     });
-//   }
+      savedValue = item;
+      return item;
+    });
+  }
 
-//   if (method === 0) {
-//     return arr.map((item, i) => {
-//       if (item !== undefined) return item;
+  if (method === 0) {
+    return arr.map((item, i) => {
+      if (item !== undefined) return item;
 
-//       let step = 1;
-//       while (true) {
-//         if (arr[i - step] !== undefined && arr[i + step] !== undefined) {
-//           return Math.min(arr[i - step], arr[i + step]);
-//         }
+      let step = 1;
+      while (true) {
+        if (arr[i - step] !== undefined && arr[i + step] !== undefined) {
+          return Math.min(arr[i - step], arr[i + step]);
+        }
 
-//         if (arr[i - step] !== undefined) return arr[i - step];
+        if (arr[i - step] !== undefined) return arr[i - step];
 
-//         if (arr[i + step] !== undefined) return arr[i + step];
+        if (arr[i + step] !== undefined) return arr[i + step];
 
-//         step++;
-//       }
-//     });
-//   }
+        step++;
+      }
+    });
+  }
 
-//   return result;
-// }
+  return result;
+}
 
-// console.log(fill([], -1), []);
-// console.log(fill([], 0), []);
-// console.log(fill([], 1), []);
+console.log(fill([], -1), []);
+console.log(fill([], 0), []);
+console.log(fill([], 1), []);
 
-// console.log(fill([undefined], -1), [undefined]);
-// console.log(fill([undefined], 0), [undefined]);
-// console.log(fill([undefined], 1), [undefined]);
+console.log(fill([undefined], -1), [undefined]);
+console.log(fill([undefined], 0), [undefined]);
+console.log(fill([undefined], 1), [undefined]);
 
-// console.log(fill([1], -1), [1]);
-// console.log(fill([1], 0), [1]);
-// console.log(fill([1], 1), [1]);
+console.log(fill([1], -1), [1]);
+console.log(fill([1], 0), [1]);
+console.log(fill([1], 1), [1]);
 
-// console.log(fill([1, undefined], -1), [1, undefined]);
-// console.log(fill([1, undefined], 0), [1, 1]);
-// console.log(fill([1, undefined], 1), [1, 1]);
+console.log(fill([1, undefined], -1), [1, undefined]);
+console.log(fill([1, undefined], 0), [1, 1]);
+console.log(fill([1, undefined], 1), [1, 1]);
 
+console.log(
+  fill([undefined, 1, undefined, undefined, undefined, 2, undefined], -1),
+  [1, 1, 2, 2, 2, 2, undefined]
+);
+console.log(
+  fill([undefined, 1, undefined, undefined, undefined, 2, undefined], 0),
+  [1, 1, 1, 1, 2, 2, 2]
+);
+console.log(
+  fill([undefined, 1, undefined, undefined, undefined, 2, undefined], 1),
+  [undefined, 1, 1, 1, 1, 2, 2]
+);
+
+console.log(
+  fill([4, 5, undefined, undefined, undefined, 2, undefined, 2], -1),
+  [4, 5, 2, 2, 2, 2, 2, 2]
+);
 // console.log(
-//   fill([undefined, 1, undefined, undefined, undefined, 2, undefined], -1),
-//   [1, 1, 2, 2, 2, 2, undefined]
+//   fill([4, 5, undefined, undefined, undefined, 2, undefined, 2], 0),
+//   [4, 5, 5, 2, 2, 2, 2, 2]
 // );
-// console.log(
-//   fill([undefined, 1, undefined, undefined, undefined, 2, undefined], 0),
-//   [1, 1, 1, 1, 2, 2, 2]
-// );
-// console.log(
-//   fill([undefined, 1, undefined, undefined, undefined, 2, undefined], 1),
-//   [undefined, 1, 1, 1, 1, 2, 2]
-// );
+console.log(
+  fill([4, 5, undefined, undefined, undefined, 2, undefined, 2], 1),
+  [4, 5, 5, 5, 5, 2, 2, 2]
+);
+*/
 
-// console.log(
-//   fill([4, 5, undefined, undefined, undefined, 2, undefined, 2], -1),
-//   [4, 5, 2, 2, 2, 2, 2, 2]
-// );
-// // console.log(
-// //   fill([4, 5, undefined, undefined, undefined, 2, undefined, 2], 0),
-// //   [4, 5, 5, 2, 2, 2, 2, 2]
-// // );
-// console.log(
-//   fill([4, 5, undefined, undefined, undefined, 2, undefined, 2], 1),
-//   [4, 5, 5, 5, 5, 2, 2, 2]
-// );
-
+/*
 // Fix string case
 // url [https://www.codewars.com/kata/5b180e9fedaa564a7000009a/train/javascript]
 
@@ -525,3 +528,27 @@ function solve(s) {
 }
 
 console.log(solve('CoDe'));
+*/
+
+// Create Phone Number
+// url [https://www.codewars.com/kata/525f50e3b73515a6db000b83/train/javascript]
+
+function createPhoneNumber(numbers) {
+  numbers.splice(3, 0, ') ');
+  numbers.splice(7, 0, '-');
+
+  return '(' + numbers.join('');
+}
+
+console.log(
+  createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]),
+  '(123) 456-7890'
+);
+console.log(
+  createPhoneNumber([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]),
+  '(111) 111-1111'
+);
+console.log(
+  createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]),
+  '(123) 456-7890'
+);
