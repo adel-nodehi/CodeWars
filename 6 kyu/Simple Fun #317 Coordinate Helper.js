@@ -21,11 +21,22 @@ function coordinateHelper(commands) {
 }
 
 // other way
-function narcissistic(value) {
-  return (
-    String(value)
-      .split('')
-      .map((num, _, numbersArr) => num ** numbersArr.length)
-      .reduce((acc, num) => acc + num, 0) === value
-  );
+const directions = {
+  W: [0, 1],
+  S: [0, -1],
+  A: [-1, 0],
+  D: [1, 0],
+};
+
+function coordinateHelper(commands) {
+  return commands
+    .filter(cmd => /^[WSAD]\d+$/.test(cmd))
+    .map(cmd => [directions[cmd[0]], +cmd.slice(1)])
+    .reduce(
+      ([x, y], [[xDir, yDir], distance]) => [
+        x + xDir * distance,
+        y + yDir * distance,
+      ],
+      [0, 0]
+    );
 }
