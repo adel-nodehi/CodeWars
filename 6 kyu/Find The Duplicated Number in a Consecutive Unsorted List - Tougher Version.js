@@ -13,22 +13,8 @@ function findDup(array) {
 }
 
 // other way
-const directions = {
-  W: [0, 1],
-  S: [0, -1],
-  A: [-1, 0],
-  D: [1, 0],
-};
+function findDup(array) {
+  const { length } = array;
 
-function coordinateHelper(commands) {
-  return commands
-    .filter(cmd => /^[WSAD]\d+$/.test(cmd))
-    .map(cmd => [directions[cmd[0]], +cmd.slice(1)])
-    .reduce(
-      ([x, y], [[xDir, yDir], distance]) => [
-        x + xDir * distance,
-        y + yDir * distance,
-      ],
-      [0, 0]
-    );
+  return array.reduce((acc, num) => acc + num, 0) - (length * (length - 1)) / 2;
 }
